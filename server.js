@@ -36,7 +36,6 @@ const addUserToReqAndLocals = require('./middleware/addUserToReqAndLocals');
 // Be sure to mount after the session middleware above
 app.use(addUserToReqAndLocals);
 
-
 // Routes/Controllers
 
 const ensureLoggedIn = require('./middleware/ensureLoggedIn');
