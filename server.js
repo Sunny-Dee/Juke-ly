@@ -28,6 +28,9 @@ app.use(session({
   saveUninitialized: true
 }));
 
+app.set('view engine', 'ejs');
+app.set('views', './views');
+
 // Require the middleware that adds the user doc to the req & the res.locals objects
 const addUserToReqAndLocals = require('./middleware/addUserToReqAndLocals');
 // Be sure to mount after the session middleware above
@@ -37,19 +40,16 @@ app.use(addUserToReqAndLocals);
 // Routes/Controllers
 
 const ensureLoggedIn = require('./middleware/ensureLoggedIn');
+const songsController = require('./controllers/songs');
 
-// '/auth' is a "starts with" path that all paths
-// within authCtrl are appended to
 app.use('/auth', require('./controllers/auth'));
-app.use('/todos', require('./controllers/todos'));
-// If you wanted to protect ALL routes 
-// app.use('/todos', ensureLoggedIn, require('./controllers/todos'));
-
 
 // GET / (root/landing page)
 app.get('/', async (req, res) => {
   res.render('home.ejs');
 });
+
+app.use('/songs', songsController); 
 
 
 // Set the port from environment variable or default to 3000

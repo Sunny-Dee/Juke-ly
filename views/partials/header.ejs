@@ -5,23 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Authentication</title>
   <link rel="stylesheet" href="/css/main.css">
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+/>
 </head>
 <body>
-  <nav>
     <!-- Put links that you want to display at all times
          outside of the if/else 
     -->
-    <a href="/">HOME</a>
-    <div>
       <% if (user) { %>
-        <a href="/todos/new">Protected Route</a>&nbsp;&nbsp;
-        <a href="/auth/logout">LOG OUT</a>&nbsp;&nbsp;
-        <span>Wecome, <%= user.username %></span>
-      <% } else { %>
-        <a href="/auth/sign-up">SIGN UP</a>
-        <a href="/auth/login">LOG IN</a>
-      <% } %>
+        <div class="nav">
+          <nav class="navbar">
+              <ul class="navList">
+                  <li class="navItem"><a class="navLink" href="/songs">All Songs</a></li>
+                  <li class="navItem"><a class="navLink" href="/songs/new">Queue a Song</a></li>
+              </ul>
+          </nav>
       </div>
-  </nav>
-  <main>
+        <span>Wecome, <%= user.name %></span>
+      <% } else { %>
+        <div class="nav">
+          <nav class="navbar">
+              <ul class="navList">
+                  <li class="navItem"><a class="navLink" href="/auth/sign-up">Sign Up</a></li>
+                  <li class="navItem"><a class="navLink" href="/auth/login">Log In</a></li>
+              </ul>
+          </nav>
+        </div>
+      <% } %>
 

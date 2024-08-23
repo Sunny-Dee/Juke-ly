@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user');
+const User = require('../models/User');
 const bcrypt = require('bcrypt')
 
 // All paths start with "/auth"
@@ -24,13 +24,13 @@ router.post('/sign-up', async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  res.redirect('/');
+  res.redirect('/songs/index.ejs');
 });
 
 // POST /auth/login (login user)
 router.post('/login', async (req, res) => {
   try {
-    const user = await User.findOne({username: req.body.username});
+    const user = await User.findOne({email: req.body.email});
     if (!user) {
       return res.redirect('/auth/login');
     }
@@ -38,7 +38,7 @@ router.post('/login', async (req, res) => {
       req.session.user = { _id: user._id };
       req.session.save();
       // Perhaps update to some other functionality
-      return res.redirect('/');
+      return res.redirect('/songs/index.ejs');
     } else {
       return res.redirect('/auth/login');
     }

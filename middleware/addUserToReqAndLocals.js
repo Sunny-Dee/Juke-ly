@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/User');
 
 module.exports = async function(req, res, next) {
   req.user = req.session.user ? await User.findById(req.session.user._id) : null;

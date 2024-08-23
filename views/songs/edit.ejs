@@ -1,0 +1,37 @@
+<%- include('../partials/_header') %>
+<%- include('../partials/_navbar') %>
+
+<div class="card animate__animated animate__flipInY">
+    <h1>Edit <%= song.title %></h1>
+    <small>Suggested by: <%= song.suggestedBy %></small><br>
+    
+    <form action="/songs/<%= song._id %>?_method=PUT" method="POST">
+        <div class="inputBox">
+            <input type="text" id="title" name="title" value="<%= song.title %>" required>
+            <label for="title">Song Title:</label>
+        </div>
+        
+        <div class="inputBox">
+            <input type="text" id="artist" name="artist" value="<%= song.artist %>" required>
+            <label for="artist">Artist:</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="url" id="spotifyLink" name="spotifyLink" value="<%= song.spotifyLink %>" required>
+            <label for="spotifyLink">Spotify Link:</label>
+        </div>
+
+        <div class="inputBox">
+            <input type="text" id="suggestedBy" name="suggestedBy" value="<%= song.suggestedBy %>" required>
+            <label for="suggestedBy">Suggested By:</label>
+        </div>
+
+        <div>
+            <button type="submit">Update Song</button>
+        </div>
+    </form>
+</div>
+<footer><a class="backLink" style="font-size: 1.5vh;" href="/songs/<%= song._id %>">Cancel</a></footer>
+
+</body>
+</html>

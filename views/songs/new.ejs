@@ -1,0 +1,41 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="card animate__animated animate__flipInY">
+    <h1>Add a New Song to the Queue</h1>
+    
+    <!-- Form for adding a new song -->
+    <form class="requestForm" action="/songs" method="POST">
+        <fieldset>
+            <legend><em>YOUR REQUEST:</em></legend>
+            <div class="inputBox">
+                <input type="text" id="title" name="title" size="30" required>
+                <label for="title">Song Title:</label>
+            </div>
+            
+            <div class="inputBox">
+                <input type="text" id="artist" name="artist" size="30" required>
+                <label for="artist">Artist:</label>
+            </div>
+        
+            
+            <div class="inputBox">
+                <input type="url" id="spotifyLink" name="spotifyLink" size="30" required>
+                <label for="spotifyLink">Spotify Link:</label>
+            </div>
+        </fieldset>
+            
+        <div class="inputBox">
+            <input type="text" id="suggestedBy" name="suggestedBy" required>
+            <label for="suggestedBy">Suggested By:</label>
+        </div>
+            
+        <div>
+            <button type="submit">Add Song</button>
+        </div>
+            
+    </form>
+</div>
+    
+    <a href="/">Back to Home</a>
+
+<%- include('../partials/footer.ejs') %>

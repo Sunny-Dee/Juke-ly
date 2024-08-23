@@ -1,0 +1,24 @@
+<%- include('../partials/header.ejs') %>
+
+<div class="card animate__animated animate__flipInY">
+    <h1>All Requested Songs</h1>
+    <% if (songs.length === 0) { %>
+        <h1>There are no songs on queue.</h1>
+    <% } else {%>    
+        <ul class="requestList">
+            <% songs.forEach(song => { %>
+                <li class="requestItem">
+                    <a href="/songs/<%= song._id %>"><%= song.title %></a> by <%= song.artist %><br>
+                    <em> Suggested by: <%= song.suggestedBy %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
+                    <a href="<%= song.spotifyLink %>" target="_blank">▶ Play on Spotify</a> &nbsp; &nbsp; | &nbsp; &nbsp; 
+                    <form action="/songs/<%= song._id %>?_method=DELETE" method="POST" style="display:inline;">
+                    <button class="smallBtn" type="submit">❌ DELETE</button> 
+                    </form>
+                </li>
+            <% }) %>
+        </ul>
+    <% } %>
+    <a class="backLink" href="/songs/new" style="text-decoration: none;">➕ Request a New Song</a>
+</div>
+
+<%- include('../partials/footer.ejs') %>
