@@ -7,7 +7,7 @@ const songSchema = new mongoose.Schema({
   artist: { 
     type: String,
     required: true },
-  spotifyLink: { 
+  YouTubeURL: { 
     type: String,
     required: true },
   user: {

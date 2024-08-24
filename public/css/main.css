@@ -274,8 +274,8 @@ body {
     transition: 0.5s;
   }
 
-  /* input:valid ~ label,
-  input:focus ~ label
+  .inputBox>input:valid ~ label,
+  .inputBox>input:focus ~ label
   {
     color: black;
     transform: translateX(10px) translateY(-10px);
@@ -286,4 +286,4 @@ body {
     border-right: 3px double black;
     letter-spacing: 0.2em;
     border-radius: 2px;
-  } */
+  }
