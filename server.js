@@ -13,14 +13,14 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-// Morgan for logging HTTP requests
+// ----------
+// MIDDLEWARE
+// ----------
+
 app.use(morgan('dev'));
-// Serves static assets to the browser
 app.use(express.static('public'));
-// Middleware to parse URL-encoded data from forms
 // express.urlencoded is what creates req.body
 app.use(express.urlencoded({ extended: false }));
-// Middleware for using HTTP verbs such as PUT or DELETE
 app.use(methodOverride("_method"));
 app.use(session({
   secret: process.env.SESSION_SECRET,
@@ -36,7 +36,9 @@ const addUserToReqAndLocals = require('./middleware/addUserToReqAndLocals');
 // Be sure to mount after the session middleware above
 app.use(addUserToReqAndLocals);
 
-// Routes/Controllers
+// --------------------
+// ROUTES / CONTROLLERS
+// --------------------
 
 const ensureLoggedIn = require('./middleware/ensureLoggedIn');
 const songsController = require('./controllers/songs');

@@ -7,15 +7,17 @@ const songSchema = new mongoose.Schema({
   artist: { 
     type: String,
     required: true },
-  YouTubeURL: { 
+  youTubeURL: { 
     type: String,
     required: true },
   user: {
-    type: [mongoose.Schema.Types.ObjectId],
+    type: mongoose.Schema.Types.ObjectId,
     required: true,
     ref: 'User'
   },
-  createdAt: { type: Date, default: Date.now }
+  createdAt: {
+    type: Date, 
+    default: Date.now }
 });
 
 const Song = mongoose.model('Song', songSchema);
