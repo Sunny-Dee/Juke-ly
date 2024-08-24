@@ -8,9 +8,16 @@
         <ul class="requestList">
             <% songs.forEach(song => { %>
                 <li class="requestItem">
-                    <a href="/songs/<%= song._id %>"><%= song.title %></a> by <%= song.artist %><br>
-                    <em>Requested by: <%= song.user ? song.user.name : 'Anon User' %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
+                    <!-- Only the owner of a song can have access to edit a song: -->
+                    <% if (song.user && user && song.user._id.equals(user._id)) { %> 
+                        <a href="/songs/<%= song._id %>"><%= song.title %></a>
+                    <% } else { %>
+                        <%= song.title %>
+                    <% } %>
+                    by <%= song.artist %><br>
+                    <em>Requested by: <%= song.user ? song.user.name : 'Deleted User' %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
                     <a href="<%= song.youTubeURL %>" target="_blank">▶ Play</a> &nbsp; &nbsp; | &nbsp; &nbsp;
+                    <!-- Only the owner of a song can delete a song in the queue: -->
                     <% if (song.user && user && song.user._id.equals(user._id)) { %>
                         <form action="/songs/<%= song._id %>?_method=DELETE" method="POST" style="display:inline;">
                             <button class="smallBtn" type="submit">❌ DELETE</button> 
@@ -24,6 +31,7 @@
 </div>
 
 <%- include('../partials/footer.ejs') %>
+
 
 
 
