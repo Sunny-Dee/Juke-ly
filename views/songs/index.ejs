@@ -9,11 +9,13 @@
             <% songs.forEach(song => { %>
                 <li class="requestItem">
                     <a href="/songs/<%= song._id %>"><%= song.title %></a> by <%= song.artist %><br>
-                    <em>Requested by: <%= song.user.name %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
-                    <a href="<%= song.youTubeURL %>" target="_blank">▶ Play</a> &nbsp; &nbsp; | &nbsp; &nbsp; 
-                    <form action="/songs/<%= song._id %>?_method=DELETE" method="POST" style="display:inline;">
-                        <button class="smallBtn" type="submit">❌ DELETE</button> 
-                    </form>
+                    <em>Requested by: <%= song.user ? song.user.name : 'Anon User' %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
+                    <a href="<%= song.youTubeURL %>" target="_blank">▶ Play</a> &nbsp; &nbsp; | &nbsp; &nbsp;
+                    <% if (song.user && user && song.user._id.equals(user._id)) { %>
+                        <form action="/songs/<%= song._id %>?_method=DELETE" method="POST" style="display:inline;">
+                            <button class="smallBtn" type="submit">❌ DELETE</button> 
+                        </form>
+                    <% } %>
                 </li>
             <% }) %>
         </ul>
@@ -22,3 +24,6 @@
 </div>
 
 <%- include('../partials/footer.ejs') %>
+
+
+
