@@ -41,6 +41,40 @@ router.post('/', ensureLoggedIn, async (req, res) => {
     }
 });
 
+// GET /songs/:songId/edit - Display form to edit a song
+router.get('/:songId/edit', ensureLoggedIn, async (req, res) => {
+    try {
+        const song = await Song.findById(req.params.songId);
+        if (song.user.equals(req.user._id)) {  // Only the owner of the song can edit.
+            res.render('songs/edit.ejs', { song });
+        } else {
+            res.send('You are not authorized to edit this song!');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Error loading edit form');
+    }
+});
+
+
+// PUT /songs/:songId - Handle the edit form submission
+router.put('/:songId', ensureLoggedIn, async (req, res) => {
+    try {
+        const song = await Song.findById(req.params.songId);
+        if (song.user.equals(req.user._id)) {  // Ensure the user owns this song
+            await Song.findByIdAndUpdate(req.params.songId, req.body);
+            res.redirect(`/songs/${req.params.songId}`);
+        } else {
+            res.send('You are not authorized to update this song!');
+        }
+    } catch (error) {
+        console.error(error);
+        res.send("Oops! There's been an error updating your song", error);
+    }
+});
+
+
+
 // DELETE song functinality.
 router.delete('/:songId', ensureLoggedIn, async (req, res) => {
     try {

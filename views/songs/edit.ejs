@@ -1,5 +1,4 @@
-<%- include('../partials/_header') %>
-<%- include('../partials/_navbar') %>
+<%- include('../partials/header.ejs') %>
 
 <div class="card animate__animated animate__flipInY">
     <h1>Edit <%= song.title %></h1>
@@ -17,13 +16,8 @@
         </div>
 
         <div class="inputBox">
-            <input type="url" id="spotifyLink" name="spotifyLink" value="<%= song.spotifyLink %>" required>
-            <label for="spotifyLink">Spotify Link:</label>
-        </div>
-
-        <div class="inputBox">
-            <input type="text" id="suggestedBy" name="suggestedBy" value="<%= song.suggestedBy %>" required>
-            <label for="suggestedBy">Suggested By:</label>
+            <input type="url" id="youTubeURL" name="youTubeURL" value="<%= song.youTubeURL %>" required>
+            <label for="youTubeURL">YouTubeURL:</label>
         </div>
 
         <div>
