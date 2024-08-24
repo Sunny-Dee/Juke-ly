@@ -52,7 +52,7 @@ router.get('/:songId/edit', ensureLoggedIn, async (req, res) => {
         }
     } catch (error) {
         console.error(error);
-        res.status(500).send('Error loading edit form');
+        res.send('Error loading the edit form. Please refresh and try again.');
     }
 });
 
@@ -72,6 +72,18 @@ router.put('/:songId', ensureLoggedIn, async (req, res) => {
         res.send("Oops! There's been an error updating your song", error);
     }
 });
+
+// GET /:songId - SHOW functionality
+router.get('/:songId', ensureLoggedIn, async (req, res) => { 
+        const song = await Song.findById(req.params.songId);
+        if (song.user.equals(req.user._id)) {  // Ensure the user owns this song
+            res.render('songs/show.ejs', { song });
+        } else {
+            res.send('What are you doing here? You are not authorized to view this song! 😡');
+        }
+});
+
+
 
 
 
