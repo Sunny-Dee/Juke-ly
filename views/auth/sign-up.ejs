@@ -1,18 +1,28 @@
 <%- include('../partials/header.ejs') %>
 
-<div class="signUpCard">
+<div class="authCard">
 
   <h1>Sign Up!</h1>
-  <form class="signUpForm" action="/auth/sign-up" method="POST">
-    <label for="email">Email:</label>
-    <input type="email" required name="email" id="email">
-    <label for="name">Name or Nickname:</label>
-    <input type="text" required name="name" id="name">
-    <label for="password">Password:</label>
-    <input type="password" required name="password" id="password">
-    <label for="confirmPassword">Confirm Password:</label>
-    <input type="password" required name="confirmPassword" id="confirmPassword" size="15">
-    <br>
+  <form class="Form" action="/auth/sign-up" method="POST">
+    <div class="inputBox">
+      <input type="email" required name="email" id="email">
+      <label for="email">Email:</label>
+    </div>
+
+    <div class="inputBox">
+      <input type="text" required name="name" id="name">
+      <label for="name">Name or Nickname:</label>
+    </div>
+    
+    <div class="inputBox">
+      <input type="password" required name="password" id="password">
+      <label for="password">Password:</label>
+    </div>
+
+    <div class="inputBox">
+      <input type="password" required name="confirmPassword" id="confirmPassword">
+      <label for="confirmPassword">Confirm Password:</label>
+    </div>
     <button type="submit">Sign up</button>
   </form>
 
