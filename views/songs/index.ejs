@@ -21,7 +21,9 @@
                     </div>
                 
                     <div class="inputBox">
-                        <input type="url" id="youTubeURL" name="youTubeURL" size="30" required>
+                        <input type="url" id="youTubeURL" name="youTubeURL" size="30" required
+                        pattern="https?://(youtu\.be/|www\.youtube\.com/watch\?v=).*" 
+                        title="Please enter a valid YouTube URL">
                         <label for="youTubeURL">YouTube URL:</label>
                     </div>
                 </fieldset>
@@ -54,7 +56,7 @@
                         <% } %>
                         by <%= song.artist %><br>
                         <em>Requested by: <%= song.user ? song.user.name : 'Deleted User' %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
-                        <a href="<%= song.youTubeURL %>" target="_blank">▶ Play</a> &nbsp; &nbsp; | &nbsp; &nbsp;
+                        <a href="#" onclick="openInIframe('<%= song.youTubeURL %>')">▶ Play</a> &nbsp; &nbsp; | &nbsp; &nbsp;
                         <!-- Only the owner of a song can delete a song in the queue: -->
                         <% if (song.user && user && song.user._id.equals(user._id)) { %>
                             <form action="/songs/<%= song._id %>?_method=DELETE" method="POST" style="display:inline;">
@@ -68,14 +70,42 @@
         <a class="backLink" href="/songs/new" style="text-decoration: none;">➕ Request a New Song</a>
     </div>
 
-    <!-- Third Div: Media Player Placeholder -->
+    <!-- Third Div: Media Player -->
     <div class="mediaPlayer">
         <h1>Now Playing</h1>
-        <iframe id="videoFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <iframe id="videoPlayer"></iframe>
     </div>
-
-    
 </div>
+
+<script>
+
+    function extractVideoId(url) {
+    let videoId = '';
+
+    if (url.includes('youtu.be/')) {
+        videoId = url.split('youtu.be/')[1];
+        console.log('Share URL detected, video ID:', videoId);
+    } else if (url.includes('youtube.com/watch')) {
+        const parts = url.split('v=');
+        videoId = parts[1];
+        console.log('Watch URL detected, video ID:', videoId);
+    }
+
+    return videoId;
+}
+    function convertToEmbedUrl(url) {
+        const videoId = extractVideoId(url);
+        return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    function openInIframe(url) {
+        const iframe = document.getElementById('videoPlayer');
+        const embedUrl = convertToEmbedUrl(url);
+        console.log('Embed URL:', embedUrl);
+        iframe.src = embedUrl;
+    }
+</script>
+
 <%- include('../partials/footer.ejs') %>
 
 
