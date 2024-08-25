@@ -37,8 +37,7 @@ router.post('/login', async (req, res) => {
     if (bcrypt.compareSync(req.body.password, user.password)) {
       req.session.user = { _id: user._id };
       req.session.save();
-      // Perhaps update to some other functionality
-      return res.redirect('/');
+      return res.redirect('/songs');
     } else {
       return res.redirect('/');
     }
