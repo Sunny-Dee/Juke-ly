@@ -1,35 +1,81 @@
 <%- include('../partials/header.ejs') %>
 
-<div class="card animate__animated animate__flipInY">
-    <h1>All Requested Songs</h1>
-    <% if (songs.length === 0) { %>
-        <h1>There are no songs in the queue.</h1>
-    <% } else { %>    
-        <ul class="requestList">
-            <% songs.forEach(song => { %>
-                <li class="requestItem">
-                    <!-- Only the owner of a song can have access to edit a song: -->
-                    <% if (song.user && user && song.user._id.equals(user._id)) { %> 
-                        <a href="/songs/<%= song._id %>"><%= song.title %></a>
-                    <% } else { %>
-                        <%= song.title %>
-                    <% } %>
-                    by <%= song.artist %><br>
-                    <em>Requested by: <%= song.user ? song.user.name : 'Deleted User' %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
-                    <a href="<%= song.youTubeURL %>" target="_blank">▶ Play</a> &nbsp; &nbsp; | &nbsp; &nbsp;
-                    <!-- Only the owner of a song can delete a song in the queue: -->
-                    <% if (song.user && user && song.user._id.equals(user._id)) { %>
-                        <form action="/songs/<%= song._id %>?_method=DELETE" method="POST" style="display:inline;">
-                            <button class="smallBtn" type="submit">❌ DELETE</button> 
-                        </form>
-                    <% } %>
-                </li>
-            <% }) %>
-        </ul>
-    <% } %>
-    <a class="backLink" href="/songs/new" style="text-decoration: none;">➕ Request a New Song</a>
-</div>
+<div class="main-container">
 
+    <!-- First Div: Song Search Form -->
+    <div class="search-container">
+        <h1>Song Search</h1>
+        <% if (user) { %>
+            <!-- Display the form if the user is logged in -->
+            <form class="requestForm" action="/songs" method="POST">
+                <fieldset>
+                    <legend><em>YOUR REQUEST:</em></legend>
+                    <div class="inputBox">
+                        <input type="text" id="title" name="title" size="30" required>
+                        <label for="title">Song Title:</label>
+                    </div>
+                    
+                    <div class="inputBox">
+                        <input type="text" id="artist" name="artist" size="30" required>
+                        <label for="artist">Artist:</label>
+                    </div>
+                
+                    <div class="inputBox">
+                        <input type="url" id="youTubeURL" name="youTubeURL" size="30" required>
+                        <label for="youTubeURL">YouTube URL:</label>
+                    </div>
+                </fieldset>
+                    
+                <div>
+                    <button type="submit">Add Song</button>
+                </div>
+            </form>
+        <% } else { %>
+            <!-- Display sign-up/login invitation if the user is not logged in -->
+            <p>Please <a href="/auth/login">log in</a> or <a href="/auth/sign-up">sign up</a> to add a song to the queue.</p>
+        <% } %>
+    </div>
+    
+
+    <!-- Second Div: Queue Container -->
+    <div class="queue-container animate__animated animate__flipInY">
+        <h1>All Requested Songs</h1>
+        <% if (songs.length === 0) { %>
+            <h1>There are no songs in the queue.</h1>
+        <% } else { %>    
+            <ul class="requestList">
+                <% songs.forEach(song => { %>
+                    <li class="requestItem">
+                        <!-- Only the owner of a song can have access to edit a song: -->
+                        <% if (song.user && user && song.user._id.equals(user._id)) { %> 
+                            <a href="/songs/<%= song._id %>"><%= song.title %></a>
+                        <% } else { %>
+                            <%= song.title %>
+                        <% } %>
+                        by <%= song.artist %><br>
+                        <em>Requested by: <%= song.user ? song.user.name : 'Deleted User' %></em> &nbsp; &nbsp; | &nbsp; &nbsp; 
+                        <a href="<%= song.youTubeURL %>" target="_blank">▶ Play</a> &nbsp; &nbsp; | &nbsp; &nbsp;
+                        <!-- Only the owner of a song can delete a song in the queue: -->
+                        <% if (song.user && user && song.user._id.equals(user._id)) { %>
+                            <form action="/songs/<%= song._id %>?_method=DELETE" method="POST" style="display:inline;">
+                                <button class="smallBtn" type="submit">❌ DELETE</button> 
+                            </form>
+                        <% } %>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
+        <a class="backLink" href="/songs/new" style="text-decoration: none;">➕ Request a New Song</a>
+    </div>
+
+    <!-- Third Div: Media Player Placeholder -->
+    <div class="mediaPlayer">
+        <h1>Now Playing</h1>
+        <iframe id="videoFrame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+    </div>
+
+    
+</div>
 <%- include('../partials/footer.ejs') %>
 
 

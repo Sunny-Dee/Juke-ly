@@ -53,9 +53,9 @@ router.get('/login', async (req, res) => {
 });
 
 // GET /auth/logout (logout)
-router.get('/logout', (req, res) => {
+router.get('/sign-out', (req, res) => {
   req.session.destroy();
-  res.redirect('/');
+  res.redirect('/songs');
 });
 
 module.exports = router;

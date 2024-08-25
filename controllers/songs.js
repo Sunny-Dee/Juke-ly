@@ -7,13 +7,8 @@ const ensureLoggedIn = require('../middleware/ensureLoggedIn.js');
 
 // View all requestes functionality.
 router.get('/', async (req, res) => {
-    try {
         const allSongs = await Song.find({}).populate('user', 'name');
         res.render('songs/index.ejs', { songs: allSongs, user: req.user });
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error fetching songs');
-    }
 });
 
 
@@ -37,7 +32,7 @@ router.post('/', ensureLoggedIn, async (req, res) => {
         res.redirect('/songs');
     } catch (err) {
         console.error(err);
-        res.status(500).send('Oops, Fumble! We han an error creating your song. Please refresh and try again! 🙏');
+        res.send('Oops, we han an error creating your song. Please refresh and try again! 🙏');
     }
 });
 
@@ -45,7 +40,8 @@ router.post('/', ensureLoggedIn, async (req, res) => {
 router.get('/:songId/edit', ensureLoggedIn, async (req, res) => {
     try {
         const song = await Song.findById(req.params.songId);
-        if (song.user.equals(req.user._id)) {  // Only the owner of the song can edit.
+        // Only the owner of the song can edit.
+        if (song.user.equals(req.user._id)) {  
             res.render('songs/edit.ejs', { song });
         } else {
             res.send('You are not authorized to edit this song!');
@@ -74,17 +70,15 @@ router.put('/:songId', ensureLoggedIn, async (req, res) => {
 });
 
 // GET /:songId - SHOW functionality
-router.get('/:songId', ensureLoggedIn, async (req, res) => { 
-        const song = await Song.findById(req.params.songId);
-        if (song.user.equals(req.user._id)) {  // Ensure the user owns this song
+router.get('/:songId', ensureLoggedIn, async (req, res) => {    
+    const song = await Song.findById(req.params.songId);
+    // Ensure the user owns this song
+        if (song.user.equals(req.user._id)) {  
             res.render('songs/show.ejs', { song });
         } else {
             res.send('What are you doing here? You are not authorized to view this song! 😡');
         }
 });
-
-
-
 
 
 // DELETE song functinality.
