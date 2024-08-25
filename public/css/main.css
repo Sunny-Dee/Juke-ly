@@ -17,13 +17,63 @@ body {
     font-weight: 400;
     font-style: normal;
     color: white;
-    background-image: url('https://i.imgur.com/1SwRfSH.png');
+    background-image: url('https://i.imgur.com/cewiIwT.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-  
   }
+
+  h1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5vh;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.85);
+    background-color: rgba(236, 240, 2, 0.582);
+    mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 20%, #ffffff 80%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  a {
+    color: #ffcc00;
+    text-align: center;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+  }
+
+  p{
+    font-size: 2vh;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
+  }
+
+  button {
+    background-color: #112c38;
+    border: 2px solid #00ffcc;
+    color: #00ffcc;
+    height: 5vh;
+    padding: 2px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc;
+    font-family: "Honk", system-ui;
+    font-size: 3vh;
+    margin-top: 12px;
+  }
+  
+  button:hover {
+    color: #ffffff; 
+    box-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc, 0 0 50px #00ffcc;
+    transform: scale(1.05);
+  }
+
+  footer{
+    margin-top: 22px;
+  }
+
   
   .nav{
     width: 100%;
@@ -128,12 +178,12 @@ body {
   .search-container, .queue-container, .mediaPlayer {
     width: 30%;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.35);
     backdrop-filter: blur(10px);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.3); 
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.85);
-}
+ }
 
   .cardShow{
     display: flex;
@@ -146,6 +196,20 @@ body {
     padding: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.85);
     width: 45%;
+  }
+
+  .signUpCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+    padding: 5%;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.85);
+    width: 35%;
+    overflow: hidden;
   }
 
   .requestList {
@@ -185,60 +249,14 @@ body {
     width: 1fr;
   }
 
-  h1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 5vh;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.85);
-    background-color: rgba(236, 240, 2, 0.582);
-    mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 20%, #ffffff 80%, rgba(255, 255, 255, 0) 100%);
-  }
-
   .backLink{
     text-align: center;
     margin-top: 20px;
   }
   
-  a {
-    color: #ffcc00;
-    text-align: center;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
-  }
-
   .getStarted{
     display: flex;
     justify-content: center;
-  }
-
-  p{
-    font-size: 2vh;
-    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
-  }
-
-  button {
-    background-color: #112c38;
-    border: 2px solid #00ffcc;
-    color: #00ffcc;
-    height: 5vh;
-    padding: 2px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 5px;
-    position: relative;
-    transition: all 0.3s ease-in-out;
-    box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc;
-    font-family: "Honk", system-ui;
-    font-size: 3vh;
-    margin-top: 12px;
-  }
-  
-  button:hover {
-    color: #ffffff; 
-    box-shadow: 0 0 20px #00ffcc, 0 0 30px #00ffcc, 0 0 40px #00ffcc, 0 0 50px #00ffcc;
-    transform: scale(1.05);
   }
 
   .smallBtn {
@@ -249,12 +267,9 @@ body {
     padding: 0 5px 0 5px; 
   }
   
-  footer{
-    margin-top: 22px;
-  }
-
   .signUpForm {
     display: grid;
+    margin: 5px;
   }
 
   .requestForm {
@@ -299,7 +314,7 @@ body {
   .mediaPlayer{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     overflow: hidden;
     height: 100%;
   }
