@@ -4,7 +4,7 @@
 
     <!-- First Div: Song Search Form -->
     <div class="search-container">
-        <h1>Song Search</h1>
+        <h1>ADD A SONG</h1>
         <% if (user) { %>
             <!-- Display the form if the user is logged in -->
             <form class="Form" action="/songs" method="POST">
@@ -40,7 +40,7 @@
 
     <!-- Second Div: Queue Container -->
     <div class="queue-container animate__animated animate__flipInY">
-        <h1>All Requested Songs</h1>
+        <h1>QUEUE</h1>
         <% if (songs.length === 0) { %>
             <h1>There are no songs in the queue.</h1>
         <% } else { %>    
@@ -71,7 +71,7 @@
 
     <!-- Third Div: Media Player -->
     <div class="mediaPlayer">
-        <h1>Now Playing</h1>
+        <h1>NOW PLAYING</h1>
         <iframe id="videoPlayer"></iframe>
     </div>
 </div>
@@ -106,7 +106,3 @@
 </script>
 
 <%- include('../partials/footer.ejs') %>
-
-
-
-

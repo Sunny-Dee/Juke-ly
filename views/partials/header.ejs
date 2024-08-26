@@ -11,11 +11,9 @@
 />
 </head>
 <body>
-    <!-- Put links that you want to display at all times
-         outside of the if/else 
-    -->
       <% if (user) { %>
-        <div class="nav">
+        <div class="top-container">
+          <h1 class="logo">JUKE.LY</h1>
           <nav class="navbar">
               <ul class="navList">
                   <li class="navItem"><a class="navLink" href="/songs">All Songs</a></li>
@@ -26,7 +24,8 @@
       </div>
         <h2>Welcome, <%= user.name %></h2>
       <% } else { %>
-        <div class="nav">
+        <div class="top-container">
+          <h1 class="logo">JUKE.LY</h1>
           <nav class="navbar">
               <ul class="navList">
                   <li class="navItem"><a class="navLink" href="/auth/sign-up">Sign Up</a></li>
