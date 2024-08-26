@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Honk:SHLN@0&family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Unica+One&display=swap');
+@font-face {
+  font-family: 'Summer Favourite';
+  src: url('../fonts/Summer-Favourite.otf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Cocogoose';
+  src: url('../fonts/Cocogoose-Classic-Medium-trial.ttf') format('truetype');
+}
 
 *{
   box-sizing: border-box;
@@ -14,7 +23,7 @@ body {
     align-items:center;
     height:100vh;
     background:#112c38;
-    font-family: "Righteous", sans-serif;
+    font-family: "Cocogoose", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: white;
@@ -26,10 +35,13 @@ body {
   }
 
   h1 {
-    height: 5vh;
-    font-family: "Unica One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4vh;
+    font-family: "Summer Favourite", sans-serif;
+    font-size: 5vh;
+    font-weight: lighter;
     color: white;
     text-align: center;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.85);
@@ -49,6 +61,10 @@ body {
     text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.85);
   }
 
+  i {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Horizontal offset, Vertical offset, Blur radius, Color */
+  }
+
   button {
     background-color: #112c38;
     border: 2px solid #00ffcc;
@@ -63,7 +79,7 @@ body {
     position: relative;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 15px #00ffcc, 0 0 20px #00ffcc;
-    font-family: "Honk", system-ui;
+    font-family: "Summer Favourite", system-ui;
     font-size: 3vh;
     margin-top: 12px;
   }
@@ -99,6 +115,13 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
 
+  .leftSideNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+  }
+
   h1.logo{
     font-family: "Honk", system-ui;
     font-optical-sizing: auto;
@@ -112,6 +135,8 @@ body {
     background: none;
     mask-image: none;
     margin-left: 20px;
+    margin-right: 20px;
+
   }
 
   .navbar{
@@ -271,7 +296,7 @@ body {
     height: 2vh;
     font-size: 1vh;
     box-shadow: none;
-    font-family: "Righteous", sans-serif;
+    font-family: "Cocogoose", sans-serif;
     padding: 0 5px 0 5px; 
   }
   
